@@ -1,0 +1,33 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true
+  },
+  "extends": ["eslint:recommended","google","prettier"],
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly",
+      "chrome": true,
+      "document":true
+  },
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "prettier",
+      "html",        
+      "react"
+  ],
+  "rules": {
+      "prettier/prettier": "error",
+      "max-len":"off",
+      "require-jsdoc":"off",
+      "no-unused-vars":"off",
+      "no-undef":"off",
+      "no-console":"off"
+  }
+}
