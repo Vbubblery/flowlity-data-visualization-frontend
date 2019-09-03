@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^5.2.1",
     "eslint": "^6.3.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.2.0",
@@ -57,7 +58,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && npm test"
     }
   }
 }
