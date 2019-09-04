@@ -7,7 +7,9 @@
     "@types/node": "12.7.4",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "antd": "^3.23.1",
     "apollo-boost": "^0.4.4",
+    "babel-eslint": "10.0.2",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "react": "^16.9.0",
@@ -18,9 +20,10 @@
     "typescript": "3.6.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "cross-env CI=true react-scripts test --env=jsdom",
+    "start": "react-app-env --env-file=.env start",
+    "build": "react-app-env --env-file=.env build",
+    "test": "cross-env CI=true react-app-env --env-file=.env test --env=jsdom",
+    "eslint": "eslint src/** --fix",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,6 +43,7 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.1",
+    "env-cmd": "^10.0.1",
     "eslint": "^6.3.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.2.0",
@@ -48,7 +52,8 @@
     "eslint-plugin-react": "^7.14.3",
     "husky": "^3.0.5",
     "lint-staged": "^9.2.5",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "react-app-env": "^1.2.3"
   },
   "lint-staged": {
     "src/**": [

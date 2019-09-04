@@ -1,15 +1,16 @@
 {
   "env": {
       "browser": true,
-      "es6": true
+      "es6": true,
+      "node": true
   },
   "extends": ["eslint:recommended","google","prettier"],
   "globals": {
       "Atomics": "readonly",
       "SharedArrayBuffer": "readonly",
-      "chrome": true,
       "document":true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
       "ecmaFeatures": {
           "jsx": true
