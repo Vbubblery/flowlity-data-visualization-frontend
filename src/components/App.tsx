@@ -4,6 +4,7 @@ import "./App.css";
 import { Layout, Menu, Icon } from "antd";
 import { Switch, Route } from "react-router";
 import Dashboard from "./dashboard";
+import Sheet from "./sheet";
 
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
@@ -22,8 +23,8 @@ const App: React.FC = () => {
         <div className="logo">
           <span className="logoName">Flowlity</span>
         </div>
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1">
+        <Menu theme="dark" defaultSelectedKeys={["dashboard"]} mode="inline">
+          <Menu.Item key="dashboard">
             <Icon type="line-chart" />
             <span>DashBoard</span>
           </Menu.Item>
@@ -32,13 +33,15 @@ const App: React.FC = () => {
             title={
               <span>
                 <Icon type="form" />
-                <span>Sheet</span>
+                <span>Products</span>
               </span>
             }
           >
-            <Menu.Item key="2">Tom</Menu.Item>
+            <Menu.Item onClick={() => console.log(123)} key="2">
+              Tom
+            </Menu.Item>
             <Menu.Item key="3">Bill</Menu.Item>
-            <Menu.Item key="4">Alex</Menu.Item>
+            <Menu.Item key="AddProduct">Add +</Menu.Item>
           </SubMenu>
         </Menu>
       </Sider>
@@ -47,6 +50,7 @@ const App: React.FC = () => {
         <Content style={{ margin: "16px 16px" }}>
           <Switch>
             <Route exact path="/" render={props => <Dashboard />} />
+            <Route exact path="/sheet" render={props => <Sheet />} />
           </Switch>
         </Content>
         <Footer style={{ textAlign: "center" }}>
