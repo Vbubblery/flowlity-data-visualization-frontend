@@ -2,13 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "antd/dist/antd.css";
-import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 
 import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 import { ObjectWithStringKey } from "./interfaces/utils";
+import App from "./components/App";
+import { BrowserRouter } from "react-router-dom";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_BACKEND,
@@ -20,7 +21,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ApolloHooksProvider client={client}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloHooksProvider>
   </ApolloProvider>,
   document.getElementById("root")
