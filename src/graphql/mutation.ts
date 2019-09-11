@@ -1,5 +1,22 @@
 import gql from "graphql-tag";
 
+export const createProductParse = gql`
+  mutation createProductParse($productName: String!) {
+    createProductParse(productInput: { productName: $productName }) {
+      status
+      errors
+      product {
+        productId
+        productName
+        data {
+          date
+          inventoryLevel
+        }
+      }
+    }
+  }
+`;
+
 export const updateProductDataParse = gql`
   mutation updateProductDataParse(
     $productName: String!

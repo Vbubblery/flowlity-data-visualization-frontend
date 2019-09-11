@@ -17,7 +17,7 @@ const Sheet = ({ location }: any) => {
         variables: {
           names: [new URLSearchParams(location.search).get("name")]
         },
-        fetchPolicy: "cache-first"
+        fetchPolicy: "network-only"
       });
       console.log(res);
       setDataSource(

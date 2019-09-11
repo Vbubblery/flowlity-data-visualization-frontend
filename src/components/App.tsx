@@ -8,14 +8,14 @@ import Sheet from "./sheet";
 import { Link } from "react-router-dom";
 import { client } from "..";
 import { allProductsName } from "../graphql/query";
-import AddData from "./add/data";
+import AddData from "./add";
 
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
 
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [names, setNames] = useState<any>(["productA"]);
+  const [names, setNames] = useState<any>([]);
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider
@@ -68,8 +68,8 @@ const App: React.FC = () => {
                 </Link>
               </Menu.Item>
             ))}
-            <Menu.Item key="AddAProductByWebSite">
-              <Link to="/add/data">Add +</Link>
+            <Menu.Item key="AddAProductDataByWebSite">
+              <Link to="/add">Add +</Link>
             </Menu.Item>
           </SubMenu>
         </Menu>
@@ -84,7 +84,7 @@ const App: React.FC = () => {
               render={(props: any) => <Sheet {...props} />}
             />
             <Route
-              path="/add/data"
+              path="/add"
               render={(props: any) => <AddData {...props} />}
             />
           </Switch>
