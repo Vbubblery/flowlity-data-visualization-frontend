@@ -12,7 +12,9 @@ it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(
     <ApolloProvider client={client}>
-      <ApolloHooksProvider client={client}>{/* <App /> */}</ApolloHooksProvider>
+      <ApolloHooksProvider client={client}>
+        <App />
+      </ApolloHooksProvider>
     </ApolloProvider>,
     div
   );
