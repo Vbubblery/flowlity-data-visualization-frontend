@@ -34,10 +34,10 @@ const App = () => {
           mode="inline"
           onOpenChange={async open => {
             if (open.includes("productSheet")) {
-              // const { data } = await client.query({
-              //   query: allProductsName
-              // });
-              // setNames(data.products.map((i: any) => i.productName));
+              const { data } = await client.query({
+                query: allProductsName
+              });
+              setNames(data.products.map((i: any) => i.productName));
             }
           }}
         >
@@ -77,7 +77,7 @@ const App = () => {
       <Layout>
         {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
         <Content style={{ margin: "16px 16px" }}>
-          <Switch>
+          {/* <Switch>
             <Route exact path="/" render={props => <Dashboard />} />
             <Route
               path="/sheet"
@@ -87,7 +87,7 @@ const App = () => {
               path="/add/data"
               render={(props: any) => <AddData {...props} />}
             />
-          </Switch>
+          </Switch> */}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Flowlity Design ©2018 Created by Juncheng ZHOU
