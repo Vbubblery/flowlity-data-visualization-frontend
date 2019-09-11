@@ -7,11 +7,12 @@ const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 const DashboardHeader = ({ setChartFilter, setNames }: any) => {
-  // eslint-disable-next-line
-  const [data,setData] = useState([] as any);
-  const children = data.products && data.products.map((i: any) => {
-    return <Option key={i.productName}>{i.productName}</Option>;
-  });
+  const [data, setData] = useState<any>([]);
+  const children =
+    data.products &&
+    data.products.map((i: any) => {
+      return <Option key={i.productName}>{i.productName}</Option>;
+    });
 
   const handleSelectChange = (value: string[]) => {
     setNames(value);
@@ -43,11 +44,11 @@ const DashboardHeader = ({ setChartFilter, setNames }: any) => {
               style={{ width: "100%" }}
               placeholder="Please select products"
               onChange={handleSelectChange}
-              onDropdownVisibleChange={async(open)=>{
-                if(open){
+              onDropdownVisibleChange={async open => {
+                if (open) {
                   const { data } = await client.query({
-                    query:allProductsName
-                  })
+                    query: allProductsName
+                  });
                   setData(data);
                 }
               }}

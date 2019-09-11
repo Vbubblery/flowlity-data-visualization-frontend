@@ -14,6 +14,16 @@ export const productsFilter = gql`
   }
 `;
 
+export const productsView = gql`
+  query ProductsView($names: [String]!) {
+    ProductsView(names: $names) {
+      productName
+      date
+      inventoryLevel
+    }
+  }
+`;
+
 export const allProductsName = gql`
   query {
     products {

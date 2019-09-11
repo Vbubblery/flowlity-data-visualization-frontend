@@ -10,7 +10,8 @@ const Graph = ({ chartFilter, names }: any) => {
     variables: {
       names,
       ...chartFilter
-    }
+    },
+    fetchPolicy: "cache-and-network"
   });
   if (loading) return <Spin size="large" />;
 
@@ -30,37 +31,41 @@ const Graph = ({ chartFilter, names }: any) => {
           boxShadow: "0 6px 10px 0 rgba(0,0,0,.3)"
         }}
       >
-        <Chart
-          height={document.documentElement.clientHeight - 80 - 80 - 80 - 20}
-          data={data.ProductsFilter}
-          scale={cols}
-          forceFit
-        >
-          <Legend />
-          <Axis name="date" />
-          <Axis
-            name="inventoryLevel"
-            label={{
-              formatter: val => ` Level: ${val}`
-            }}
-          />
-          <Tooltip
-            crosshairs={{
-              type: "y"
-            }}
-          />
-          <Geom
-            type="line"
-            position="date*inventoryLevel"
-            size={1}
-            shape="smooth"
-            color={"productName"}
-            style={{
-              stroke: "#fff",
-              lineWidth: 1
-            }}
-          />
-        </Chart>
+        {data.ProductsFilter.length > 0 ? (
+          <Chart
+            height={document.documentElement.clientHeight - 80 - 80 - 80 - 20}
+            data={data.ProductsFilter}
+            scale={cols}
+            forceFit
+          >
+            <Legend />
+            <Axis name="date" />
+            <Axis
+              name="inventoryLevel"
+              label={{
+                formatter: val => ` Level: ${val}`
+              }}
+            />
+            <Tooltip
+              crosshairs={{
+                type: "y"
+              }}
+            />
+            <Geom
+              type="line"
+              position="date*inventoryLevel"
+              size={1}
+              shape="smooth"
+              color={"productName"}
+              style={{
+                stroke: "#fff",
+                lineWidth: 1
+              }}
+            />
+          </Chart>
+        ) : (
+          <Spin size="large" />
+        )}
       </div>
     </React.Fragment>
   );
