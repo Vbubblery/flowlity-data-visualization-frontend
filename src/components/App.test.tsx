@@ -5,7 +5,7 @@ import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { ApolloProvider as ApolloHooksProvider } from "react-apollo-hooks";
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: process.env.REACT_APP_BACKEND
 });
 it("renders without crashing", () => {
