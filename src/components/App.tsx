@@ -18,7 +18,7 @@ const App = () => {
   const [names, setNames] = useState<any>(["productA"]);
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider
+      {/* <Sider
         collapsible
         collapsed={collapsed}
         onCollapse={collapsed => {
@@ -73,8 +73,8 @@ const App = () => {
             </Menu.Item>
           </SubMenu>
         </Menu>
-      </Sider>
-      {/* <Layout>
+      </Sider> */}
+      <Layout>
         <Content style={{ margin: "16px 16px" }}>
           <Switch>
             <Route exact path="/" render={props => <Dashboard />} />
@@ -91,7 +91,7 @@ const App = () => {
         <Footer style={{ textAlign: "center" }}>
           Flowlity Design ©2018 Created by Juncheng ZHOU
         </Footer>
-      </Layout> */}
+      </Layout>
     </Layout>
   );
 };
