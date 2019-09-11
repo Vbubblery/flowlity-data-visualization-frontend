@@ -85,7 +85,9 @@ const App: React.FC = () => {
             />
             <Route
               path="/add"
-              render={(props: any) => <AddData {...props} />}
+              render={(props: any) => (
+                <AddData {...props} names={names} setNames={setNames} />
+              )}
             />
           </Switch>
         </Content>

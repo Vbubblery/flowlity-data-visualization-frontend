@@ -30,7 +30,7 @@ const successModal = () => {
   });
 };
 
-const AddData = () => {
+const AddData = ({ names, setNames }: any) => {
   const [data, setData] = useState<any>([]);
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<number>(0);
@@ -78,6 +78,7 @@ const AddData = () => {
         errorModal(res.data.createProductParse.errors);
       }
       if (res.data.createProductParse.status === "Successful") {
+        if (names.length > 0) setNames([...names, name]);
         successModal();
       }
     }
