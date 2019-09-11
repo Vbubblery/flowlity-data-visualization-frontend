@@ -21,9 +21,9 @@ export const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ApolloHooksProvider client={client}>
-      {/* <BrowserRouter> */}
-      <App />
-      {/* </BrowserRouter> */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </ApolloHooksProvider>
   </ApolloProvider>,
   document.getElementById("root")
