@@ -74,10 +74,9 @@ const App = () => {
           </SubMenu>
         </Menu>
       </Sider>
-      <Layout>
-        {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
+      {/* <Layout>
         <Content style={{ margin: "16px 16px" }}>
-          {/* <Switch>
+          <Switch>
             <Route exact path="/" render={props => <Dashboard />} />
             <Route
               path="/sheet"
@@ -87,12 +86,12 @@ const App = () => {
               path="/add/data"
               render={(props: any) => <AddData {...props} />}
             />
-          </Switch> */}
+          </Switch>
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Flowlity Design ©2018 Created by Juncheng ZHOU
         </Footer>
-      </Layout>
+      </Layout> */}
     </Layout>
   );
 };
