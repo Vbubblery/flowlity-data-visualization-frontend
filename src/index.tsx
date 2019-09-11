@@ -11,6 +11,8 @@ import { ObjectWithStringKey } from "./interfaces/utils";
 import App from "./components/App";
 import { BrowserRouter } from "react-router-dom";
 
+// hello
+
 export const client = new ApolloClient({
   uri: process.env.REACT_APP_BACKEND,
   cache: new InMemoryCache({
