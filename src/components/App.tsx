@@ -13,7 +13,7 @@ import AddData from "./add/data";
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
 
-const App: React.FC = () => {
+const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [names, setNames] = useState<any>(["productA"]);
   return (
