@@ -6,20 +6,29 @@ import {
   updateProductDataParse,
   deleteDataFromProductParse
 } from "../../graphql/mutation";
+import SheetFilter from "./filter";
+import { levelOptions } from "../../interfaces/utils";
 const { Option } = Select;
 
 const Sheet = ({ location }: any) => {
   const [dataSource, setDataSource] = useState([]);
+  const [editKey, setEditKey] = useState("");
+  const [dateFilter, setDateFilter] = useState<any>({
+    dateStart: -1,
+    dateEnd: -1
+  });
+  const [levelFilter, setLevelFilter] = useState(-1);
   useEffect(() => {
     const fetchMyAPI = async () => {
       const res = await client.query({
         query: productsView,
         variables: {
-          names: [new URLSearchParams(location.search).get("name")]
+          names: [new URLSearchParams(location.search).get("name")],
+          ...dateFilter,
+          level: levelFilter
         },
         fetchPolicy: "network-only"
       });
-      console.log(res);
       setDataSource(
         res.data.ProductsView.map((item: any, index: number) => {
           return {
@@ -31,15 +40,8 @@ const Sheet = ({ location }: any) => {
     };
     fetchMyAPI();
     // if []. means only execute once time, for this case, if the location.search changed, and it will run again.
-  }, [location.search]);
+  }, [location.search, dateFilter, levelFilter]);
 
-  // let dataSource = data.ProductsView.map((item:any,index:number)=>{
-  //   return {
-  //     key:index,
-  //     ...item
-  //   }
-  // })
-  const selectOptions = [0, 1, 2, 3, 4, 5];
   const columns: any = [
     {
       title: "Product Name",
@@ -60,27 +62,37 @@ const Sheet = ({ location }: any) => {
       dataIndex: "inventoryLevel",
       sorter: (a: any, b: any) => +a.inventoryLevel - +b.inventoryLevel,
       sortDirections: ["descend", "ascend"],
-      render: (text: string, record: any) => (
-        <Select
-          defaultValue={text}
-          style={{ width: 120 }}
-          onChange={async (value: string) => {
-            console.log(record);
-            await client.mutate({
-              mutation: updateProductDataParse,
-              variables: {
-                productName: record.productName,
-                date: +record.date,
-                inventoryLevel: +value
-              }
-            });
-          }}
-        >
-          {selectOptions.map((i: number) => (
-            <Option key={i}>{i}</Option>
-          ))}
-        </Select>
-      )
+      render: (text: string, record: any) => {
+        if (record.key !== editKey)
+          return <div onClick={() => setEditKey(record.key)}>{text}</div>;
+        else
+          return (
+            <Select
+              autoFocus
+              onBlur={() => {
+                setEditKey("");
+              }}
+              defaultValue={record.inventoryLevel}
+              style={{ width: 120 }}
+              onChange={async (value: string) => {
+                await client.mutate({
+                  mutation: updateProductDataParse,
+                  variables: {
+                    productName: record.productName,
+                    date: +record.date,
+                    inventoryLevel: +value
+                  }
+                });
+                // eslint-disable-next-line require-atomic-updates
+                record.inventoryLevel = value;
+              }}
+            >
+              {levelOptions.map((i: number) => (
+                <Option key={i}>{i}</Option>
+              ))}
+            </Select>
+          );
+      }
     },
     {
       title: "Action",
@@ -124,8 +136,14 @@ const Sheet = ({ location }: any) => {
           minHeight: 500
         }}
       >
+        <SheetFilter
+          setDateFilter={setDateFilter}
+          setLevelFilter={setLevelFilter}
+        />
         {dataSource.length > 0 ? (
-          <Table columns={columns} dataSource={dataSource} />
+          <React.Fragment>
+            <Table columns={columns} dataSource={dataSource} />
+          </React.Fragment>
         ) : (
           <Spin size="large" />
         )}

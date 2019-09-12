@@ -15,8 +15,20 @@ export const productsFilter = gql`
 `;
 
 export const productsView = gql`
-  query ProductsView($names: [String]!) {
-    ProductsView(names: $names) {
+  query ProductsView(
+    $names: [String]!
+    $dateStart: Float
+    $dateEnd: Float
+    $level: Int
+  ) {
+    ProductsView(
+      names: $names
+      filter: {
+        date: { dateStart: $dateStart, dateEnd: $dateEnd }
+        level: $level
+      }
+    ) {
+      productId
       productName
       date
       inventoryLevel

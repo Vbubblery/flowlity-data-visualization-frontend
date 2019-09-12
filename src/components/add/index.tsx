@@ -13,8 +13,8 @@ import { client } from "../..";
 import { allProductsName } from "../../graphql/query";
 import { addDataParse, createProductParse } from "../../graphql/mutation";
 import { Redirect } from "react-router";
+import { levelOptions } from "../../interfaces/utils";
 const { Option } = Select;
-const selectOptions = [0, 1, 2, 3, 4, 5];
 
 const errorModal = (msg: string) => {
   Modal.error({
@@ -171,7 +171,7 @@ const AddData = ({ names, setNames }: any) => {
                   placeholder="Please select a level"
                   onChange={handleLevelSelectChange}
                 >
-                  {selectOptions.map((i: number) => (
+                  {levelOptions.map((i: number) => (
                     <Option key={i}>{i}</Option>
                   ))}
                 </Select>
