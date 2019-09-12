@@ -9,7 +9,7 @@ import {
   Col,
   Modal
 } from "antd";
-import { client } from "../..";
+
 import { allProductsName } from "../../graphql/query";
 import { addDataParse, createProductParse } from "../../graphql/mutation";
 import { Redirect } from "react-router";
@@ -30,7 +30,7 @@ const successModal = () => {
   });
 };
 
-const AddData = ({ names, setNames }: any) => {
+const AddData = ({ names, setNames, client }: any) => {
   const [data, setData] = useState<any>([]);
   const [name, setName] = useState<string>("");
   const [date, setDate] = useState<number>(0);
@@ -144,7 +144,8 @@ const AddData = ({ names, setNames }: any) => {
                   onDropdownVisibleChange={async open => {
                     if (open) {
                       const { data } = await client.query({
-                        query: allProductsName
+                        query: allProductsName,
+                        fetchPolicy: "network-only"
                       });
                       setData(data);
                     }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Spin, Select, Icon } from "antd";
 import { productsView } from "../../graphql/query";
-import { client } from "../..";
 import {
   updateProductDataParse,
   deleteDataFromProductParse
@@ -10,7 +9,7 @@ import SheetFilter from "./filter";
 import { levelOptions } from "../../interfaces/utils";
 const { Option } = Select;
 
-const Sheet = ({ location }: any) => {
+const Sheet = ({ location, client }: any) => {
   const [dataSource, setDataSource] = useState([]);
   const [editKey, setEditKey] = useState("");
   const [dateFilter, setDateFilter] = useState<any>({
@@ -40,7 +39,7 @@ const Sheet = ({ location }: any) => {
     };
     fetchMyAPI();
     // if []. means only execute once time, for this case, if the location.search changed, and it will run again.
-  }, [location.search, dateFilter, levelFilter]);
+  }, [location.search, dateFilter, levelFilter, client]);
 
   const columns: any = [
     {

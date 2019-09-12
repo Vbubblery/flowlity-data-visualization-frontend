@@ -17,16 +17,15 @@ export const client = new ApolloClient({
     dataIdFromObject: (object: ObjectWithStringKey) => object.key
   })
 });
-
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ApolloHooksProvider client={client}>
       <BrowserRouter>
-        <App />
+        <App client={client} />
       </BrowserRouter>
     </ApolloHooksProvider>
   </ApolloProvider>,
-  document.getElementById("root")
+  document.getElementById("root") || document.createElement("div")
 );
 
 // If you want your app to work offline and load faster, you can change

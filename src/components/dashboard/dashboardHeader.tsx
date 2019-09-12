@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Row, Col, DatePicker, Select } from "antd";
 import moment from "moment";
 import { allProductsName } from "../../graphql/query";
-import { client } from "../..";
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
-const DashboardHeader = ({ setChartFilter, setNames }: any) => {
+const DashboardHeader = ({ setChartFilter, setNames, client }: any) => {
   const [data, setData] = useState<any>([]);
   const children =
     data.products &&

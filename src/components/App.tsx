@@ -6,14 +6,13 @@ import { Switch, Route } from "react-router";
 import Dashboard from "./dashboard";
 import Sheet from "./sheet";
 import { Link } from "react-router-dom";
-import { client } from "..";
 import { allProductsName } from "../graphql/query";
 import AddData from "./add";
 
 const { SubMenu } = Menu;
 const { Content, Sider, Footer } = Layout;
 
-const App: React.FC = () => {
+const App = ({ client }: any) => {
   const [collapsed, setCollapsed] = useState(false);
   const [names, setNames] = useState<any>([]);
   return (
@@ -78,15 +77,24 @@ const App: React.FC = () => {
         {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
         <Content style={{ margin: "16px 16px" }}>
           <Switch>
-            <Route exact path="/" render={props => <Dashboard />} />
+            <Route
+              exact
+              path="/"
+              render={props => <Dashboard client={client} />}
+            />
             <Route
               path="/sheet"
-              render={(props: any) => <Sheet {...props} />}
+              render={(props: any) => <Sheet {...props} client={client} />}
             />
             <Route
               path="/add"
               render={(props: any) => (
-                <AddData {...props} names={names} setNames={setNames} />
+                <AddData
+                  {...props}
+                  names={names}
+                  setNames={setNames}
+                  client={client}
+                />
               )}
             />
           </Switch>

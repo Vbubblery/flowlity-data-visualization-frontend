@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.4",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "@types/react-test-renderer": "^16.9.0",
     "antd": "^3.23.1",
     "apollo-boost": "^0.4.4",
     "babel-eslint": "10.0.2",
     "bizcharts": "^3.5.5",
+    "canvas": "^2.6.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "moment": "^2.24.0",
@@ -26,7 +30,7 @@
   "scripts": {
     "start": "react-app-env --env-file=.env start",
     "build": "react-app-env --env-file=.env build",
-    "test": "cross-env CI=true react-app-env --env-file=.env test --env=jsdom",
+    "test": "cross-env CI=true react-app-env --env-file=.env test --env=jsdom --silent",
     "eslint": "eslint src/** --fix",
     "eject": "react-scripts eject"
   },
